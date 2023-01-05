@@ -1,22 +1,22 @@
 from tkinter import *
 from tkinter import messagebox
 import random as r
+import pyperclip
 
 
 
 
 window = Tk()
-window.title("Password Manager")
+window.title("Passord Manager")
 window.config(padx=50, pady=50)
 
 def generate_password():
   characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø','å','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' 'Æ', 'Ø', 'Å','0', '1', '2', '3', '4', '5', '6', '7', '8', '9','!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', '|', ':', '<', '>', '.', '?', '/', '`', '~']
-  password = []
+  password = [r.choice(characters) for _ in range(16)]
   passwordstring =""
-  for x in range(16):
-    char = r.choice(characters)
-    password.append(char)
-  password_entry.insert(0, passwordstring.join(password))
+  new_password = passwordstring.join(password)
+  password_entry.insert(0, new_password)
+  pyperclip.copy(new_password)
 
 
 def save_password():
