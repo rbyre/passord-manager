@@ -34,16 +34,18 @@ def save_password():
     try:
         with open('data.json', 'r') as f:
           data = json.load(f)
-          data.update(new_data)
-
-        with open('data.json', 'w') as f:
-          json.dump(data, f, indent=4)
-          
-          website_entry.delete(0, END)
-          password_entry.delete(0,END)
+             
     except FileNotFoundError:
       with open('data.json', 'w') as f:
         json.dump(new_data, f, indent=4)
+    else:
+      data.update(new_data)
+
+      with open('data.json', 'w') as f:
+          json.dump(data, f, indent=4)
+    finally:      
+          website_entry.delete(0, END)
+          password_entry.delete(0,END)
   else:
     messagebox.showerror(title="Manglende data", message="Et nødvendig felt er tomt. Vennligst legg inn.")
 
